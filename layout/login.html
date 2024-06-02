@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        .login-form .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .login-form .form-control:focus {
+            z-index: 2;
+        }
+        .login-form label {
+            margin-bottom: 0.5rem;
+        }
+        .btn-custom  {
+            background-color: #299D91; /* Custom green color */
+            color: white; /* White text color */
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #238d82; /* Slightly darker shade for hover */
+        }
+        .warna{
+            color: #238d82;
+        }
+        .ketebalan{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <form action="" method="POST">
+            <h2 class="text-center warna ketebalan">FUNDIFY</h2>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="Login" class="btn btn-custom btn-block">Log in</button>
+            </div>
+        </form>
+
+        <div>
+            <a href="registrasi.php" class="text-center warna">buat akun</a>
+        </div>
+    </div>
+    
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.querySelector(".login-form form");
+    
+            loginForm.addEventListener("submit", function(event) {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+    
+                if (!username || !password) {
+                    alert("Username dan Password tidak boleh kosong!");
+                    event.preventDefault();  // Menghentikan pengiriman form
+                    return false;
+                }
+                return true;
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

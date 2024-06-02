@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="layout/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .dash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .dash-content .title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dash-content .title i {
+            font-size: 3rem;
+            color: #1abc9c;
+            margin-right: 10px;
+        }
+
+        .dash-content .title .text {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .about-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .about-content:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-content h2 {
+            margin-top: 0;
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.2em;
+            color: #34495e;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .about-content ul li {
+            font-size: 1.2em;
+            color: #34495e;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            padding-left: 2.5em;
+            position: relative;
+        }
+
+        .about-content ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1abc9c;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .about-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                padding: 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Fundify</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo2.png" alt="">
+            </div>
+
+            <span class="logo_name">Fundify</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li><a href="pemasukan.php">
+                        <i class="uil uil-folder-plus"></i>
+                        <span class="link-name">Pemasukan</span>
+                    </a></li>
+                <li><a href="pengeluaran.php">
+                        <i class="uil uil-folder-minus"></i>
+                        <span class="link-name">Pengeluaran</span>
+                    </a></li>
+                <li><a href="grafik.php">
+                        <i class="uil uil-analytics"></i>
+                        <span class="link-name">Grafik</span>
+                    </a></li>
+                <li><a href="about.php">
+                        <i class="uil uil-cloud-info"></i>
+                        <span class="link-name">About</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="Logout.php">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+
+            <i class="uil uil-user-circle profile" title= "PROFILE"></i>
+        </div>
+
+        <!-- konten utama -->
+        <div class="dash-content">
+
+            <div class="title">
+                <i class="uil uil-cloud-info"></i>
+                <span class="text">Tentang Fundify</span>
+            </div>
+
+            <div class="about-content">
+                <h2>Selamat Datang di Fundify</h2>
+                <p>Fundify adalah aplikasi web yang dirancang untuk membantu Anda mencatat dan mengelola keuangan Anda dengan efektif. Baik Anda individu yang mengelola keuangan pribadi atau usaha kecil yang memantau arus kas, Fundify siap membantu Anda.</p>
+                <p>Platform kami menawarkan berbagai fitur yang memungkinkan Anda untuk:</p>
+                <ul>
+                    <li>Mencatat pemasukan dan pengeluaran dengan mudah.</li>
+                    <li>Menghasilkan laporan keuangan dan grafik yang rinci untuk memvisualisasikan arus kas Anda.</li>
+                    <li>Mengorganisir data keuangan Anda dengan mudah, memastikan Anda memiliki semua informasi yang Anda butuhkan di ujung jari Anda.</li>
+                    <li>Memantau kesehatan keuangan Anda dan membuat keputusan yang tepat berdasarkan data yang akurat.</li>
+                </ul>
+                <p>Di Fundify, kami percaya dalam menyediakan antarmuka yang ramah pengguna dan intuitif yang membuat manajemen keuangan menjadi sederhana dan dapat diakses oleh semua orang. Mulailah menggunakan Fundify hari ini dan kendalikan keuangan Anda!</p>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

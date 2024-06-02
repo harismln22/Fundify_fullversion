@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="layout/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Fundify</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo2.png" alt="">
+            </div>
+            <span class="logo_name">Fundify</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li><a href="pemasukan.php">
+                        <i class="uil uil-folder-plus"></i>
+                        <span class="link-name">Pemasukan</span>
+                    </a></li>
+                <li><a href="pengeluaran.php">
+                        <i class="uil uil-folder-minus"></i>
+                        <span class="link-name">Pengeluaran</span>
+                    </a></li>
+                <li><a href="grafik.php">
+                        <i class="uil uil-analytics"></i>
+                        <span class="link-name">Grafik</span>
+                    </a></li>
+                <li><a href="about.php">
+                        <i class="uil uil-cloud-info"></i>
+                        <span class="link-name">About</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="Logout.php">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+
+            <i class="uil uil-user-circle profile" title= PROFILE></i>
+        </div>
+
+        <!-- konten utama -->
+        <div class="dash-content">
+            <div class="title">
+                <i class="uil uil-analytics"></i>
+                <span class="text">Grafik</span>
+            </div>
+
+            <div class="chart-container" style="width: 80%; margin: auto;">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <label for="monthSelect">Pilih Bulan:</label>
+                <select id="monthSelect" onchange="updateChart()">
+                    <option value="0">Januari</option>
+                    <option value="1">Februari</option>
+                    <option value="2">Maret</option>
+                    <option value="3">April</option>
+                    <option value="4">Mei</option>
+                    <option value="5">Juni</option>
+                    <option value="6">Juli</option>
+                    <option value="7">Agustus</option>
+                    <option value="8">September</option>
+                    <option value="9">Oktober</option>
+                    <option value="10">November</option>
+                    <option value="11">Desember</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        const incomeDataPerMonth = INCOME_DATA;
+        const expenseDataPerMonth = EXPENSE_DATA;
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7'],
+                datasets: [{
+                    label: 'Pemasukan',
+                    data: incomeDataPerMonth[0],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pengeluaran',
+                    data: expenseDataPerMonth[0],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            const selectedMonth = document.getElementById('monthSelect').value;
+            myChart.data.datasets[0].data = incomeDataPerMonth[selectedMonth];
+            myChart.data.datasets[1].data = expenseDataPerMonth[selectedMonth];
+            myChart.update();
+        }
+    </script>
+</body>
+
+</html>
