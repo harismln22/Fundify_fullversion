@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .register-form {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        .register-form .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .register-form .form-control:focus {
+            z-index: 2;
+        }
+        .register-form label {
+            margin-bottom: 0.5rem;
+        }
+        .btn-custom {
+            background-color: #299D91; /* Custom green color */
+            color: white; /* White text color */
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #238d82; /* Slightly darker shade for hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="register-form">
+        <form action="registrasi.php" method="post">
+            <h2 class="text-center">Register</h2>
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input  name="fullname" id="fullname" name="fullname"class="form-control" placeholder="Full Name" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input name="username" type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Jabatan</label>
+                <input name="jabatan" type="text" id="username" name="jabatan"class="form-control" placeholder="Jabatan" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password" name="password"class="form-control" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="Register" class="btn btn-custom btn-block">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

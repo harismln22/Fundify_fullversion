@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="layout/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Fundify</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo2.png" alt="">
+            </div>
+            <span class="logo_name">Fundify</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li><a href="pemasukan.php">
+                        <i class="uil uil-folder-plus"></i>
+                        <span class="link-name">Pemasukan</span>
+                    </a></li>
+                <li><a href="pengeluaran.php">
+                        <i class="uil uil-folder-minus"></i>
+                        <span class="link-name">Pengeluaran</span>
+                    </a></li>
+                <li><a href="grafik.php">
+                        <i class="uil uil-analytics"></i>
+                        <span class="link-name">Grafik</span>
+                    </a></li>
+                <li><a href="about.php">
+                        <i class="uil uil-cloud-info"></i>
+                        <span class="link-name">About</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="Logout.php">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+
+            <i class="uil uil-user-circle profile" title= PROFILE>PROFILE</i>
+        </div>
+
+        <!-- konten utama -->
+        <div class="dash-content">
+            <div class="title">
+                <i class="uil uil-analytics"></i>
+                <span class="text">Grafik</span>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        const incomeDataPerMonth = INCOME_DATA;
+        const expenseDataPerMonth = EXPENSE_DATA;
+        
+    </script>
+</body>
+
+</html>

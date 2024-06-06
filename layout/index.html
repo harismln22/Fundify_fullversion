@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="layout/style.css">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Fundify</title>
+    <style>
+        table th,td {
+            text-align: center;
+        }
+        .download-button {
+            margin-top: 20px; /* Atur sesuai kebutuhan */
+            text-align: right; /* Untuk memposisikan tombol di tengah */
+        }
+
+        .btn-download {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Warna tombol */
+            color: white; /* Warna teks */
+            text-decoration: none; /* Menghilangkan garis bawah teks */
+            border-radius: 5px; /* Membuat tepi tombol menjadi bulat */
+        }
+
+        .btn-download:hover {
+            background-color: #45a049; /* Warna tombol saat di-hover */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo2.png" alt="">
+            </div>
+
+            <span class="logo_name">Fundify</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="index.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li><a href="pemasukan.php">
+                        <i class="uil uil-folder-plus"></i>
+                        <span class="link-name">Pemasukan</span>
+                    </a></li>
+                <li><a href="pengeluaran.php">
+                        <i class="uil uil-folder-minus"></i>
+                        <span class="link-name">Pengeluaran</span>
+                    </a></li>
+                <li><a href="grafik.php">
+                        <i class="uil uil-analytics"></i>
+                        <span class="link-name">Grafik</span>
+                    </a></li>
+                <li><a href="about.php">
+                        <i class="uil uil-cloud-info"></i>
+                        <span class="link-name">About</span>
+                    </a></li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="Logout.php">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+
+            <i class="uil uil-user-circle profile" title= PROFILE>PROFILE</i>
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Dashboard</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="text">Total pemasukan</span>
+                        <span class="number">TOTAL_MASUK</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-comments"></i>
+                        <span class="text">Total Pengeluaran</span>
+                        <span class="number">TOTAL_KELUAR</span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-share"></i>
+                        <span class="text">Selisih</span>
+                        <span class="number">SELISIH</span>
+                    </div>
+                </div>
+                <div class="download-button">
+                    <a href="index.php?download_pdf=true" class="btn-download">Download Laporan</a>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-users-alt"></i>
+                    <span class="text">Daftar User</span>
+                </div>
+        
+                <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 10px; border: 1px solid #ddd;">No</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Fullname</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Username</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Jabatan</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Email</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Joined</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Type</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Aksi</th>
+                    </tr>
+                    TABEL_AKUN
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
