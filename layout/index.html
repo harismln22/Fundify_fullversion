@@ -53,22 +53,26 @@
                         <span class="link-name">Home</span>
                     </a>
                 </li>
-                <li><a href="pemasukan.php">
+                <li><a href="keuangan.php?type=pemasukan">
                         <i class="uil uil-folder-plus"></i>
                         <span class="link-name">Pemasukan</span>
-                    </a></li>
-                <li><a href="pengeluaran.php">
+                    </a>
+                </li>
+                <li><a href="keuangan.php?type=pengeluaran">
                         <i class="uil uil-folder-minus"></i>
                         <span class="link-name">Pengeluaran</span>
-                    </a></li>
+                    </a>
+                </li>
                 <li><a href="grafik.php">
                         <i class="uil uil-analytics"></i>
                         <span class="link-name">Grafik</span>
-                    </a></li>
+                    </a>
+                </li>
                 <li><a href="about.php">
                         <i class="uil uil-cloud-info"></i>
                         <span class="link-name">About</span>
-                    </a></li>
+                    </a>
+                </li>
             </ul>
 
             <ul class="logout-mode">
@@ -114,6 +118,43 @@
                 </div>
                 <div class="download-button">
                     <a href="index.php?download_pdf=true" class="btn-download">Download Laporan</a>
+                </div>
+                <div class="download-button">
+                    <form action="index.php?download_pdf_bulan=true" method="POST">
+                        <input type="hidden" name="download_pdf_perbulan" value="true">
+                        <label for="bulan">Pilih Bulan:</label>
+                        <select name="bulan" id="bulan">
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <label for="tahun">Pilih Tahun:</label>
+                        <select name="tahun" id="tahun">
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                        </select>
+                        <!-- Memperbaiki tampilan -->
+                        <button type="submit" class="btn-download">Download Laporan</button>
+                    </form>
                 </div>
             </div>
 

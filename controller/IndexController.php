@@ -6,7 +6,6 @@ include_once("model/AkunModel.php");
 include_once("view/IndexView.php");
 include_once("view/EditAkunView.php");
 
-
 class IndexController {
     
     private $index;
@@ -51,6 +50,42 @@ class IndexController {
       $view = new IndexView();
       $view->downloadPdf($arrayMasuk, $arrayKeluar);
   }
+
+  public function downloadPDFPerBulan($bulan,$tahun) 
+  {
+    $this->index->open();
+    // Siapkan data dari model
+    $dataMasuk = $this->index->getDataMasukPerBulan($bulan,$tahun);
+    $dataKeluar = $this->index->getDataKeluarPerBulan($bulan,$tahun);
+
+    $arrayMasuk = array(
+      'pemasukan' => array(),
+    );
+
+    $arrayKeluar = array(
+      'pengeluaran' => array(),
+    );
+
+    while ($row = $dataMasuk->fetch_assoc()) {
+      // echo "<pre>";
+      // print_r($row);
+      // echo "</pre>";
+      array_push($arrayMasuk['pemasukan'], $row);
+    }
+  
+    while ($row = $dataKeluar->fetch_assoc()) {
+      // echo "<pre>";
+      // print_r($row);
+      // echo "</pre>";
+      array_push($arrayKeluar['pengeluaran'], $row);
+    }
+
+    $this->index->close();
+
+    $view = new IndexView();
+    $view->downloadPdfPerbulan($arrayMasuk, $arrayKeluar,$bulan,$tahun);
+}
+
   
 
     // halaman admin
@@ -103,12 +138,12 @@ class IndexController {
           'akun' => array(),
         );
   
-        while ($row = $this->AkunTable->getResult()) {
-          // echo "<pre>";
-          // print_r($row);
-          // echo "</pre>";
-          array_push($dataAkun['akun'], $row);
-        }
+        // while ($row = $this->AkunTable->getResult()) {
+        //   // echo "<pre>";
+        //   // print_r($row);
+        //   // echo "</pre>";
+        //   array_push($dataAkun['akun'], $row);
+        // }
     
         $view = new IndexView();
         $view->renderUser($data, $dataAkun);

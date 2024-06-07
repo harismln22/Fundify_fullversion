@@ -22,6 +22,13 @@ if ($_SESSION['role'] == 1) {
         $Index->downloadPDF();
         exit;
     }
+    if (isset($_POST['download_pdf_perbulan'])) {
+        // Jika formulir untuk laporan bulanan diposting, tangani logika untuk itu di sini
+        $bulan = $_POST['bulan'];
+        $tahun = $_POST['tahun'];
+        $Index->downloadPDFPerBulan($bulan, $tahun);
+        exit;
+    }
     if(!empty($_GET['id_hapus']))
     {
         $id = $_GET['id_hapus'];
@@ -48,6 +55,15 @@ if ($_SESSION['role'] == 1) {
         $Index->downloadPDF();
         exit;
     }
+    if (isset($_POST['download_pdf_perbulan'])) {
+        // Jika formulir untuk laporan bulanan diposting, tangani logika untuk itu di sini
+        $bulan = $_POST['bulan'];
+        $tahun = $_POST['tahun'];
+        $Index->downloadPDFPerBulan($bulan, $tahun);
+        exit;
+    }
+    
+
     $Index->indexUser();
     
 }

@@ -1,8 +1,8 @@
 <?php
 
-class KeuanganModel extends DB 
+class KeuanganModel extends DB
 {
-    function getDataMasuk() 
+    function getDataMasuk()
     {
         $query = "SELECT pemasukan.id_pemasukan, akun.fullname, akun.jabatan , pemasukan.tanggal, pemasukan.jumlah, pemasukan.sumber, pemasukan.deskripsi
                     FROM akun 
@@ -10,7 +10,7 @@ class KeuanganModel extends DB
         return $this->execute($query);
     }
 
-    function getDataKeluar() 
+    function getDataKeluar()
     {
         $query = "SELECT pengeluaran.id_pengeluaran, akun.fullname, akun.jabatan, pengeluaran.tanggal, pengeluaran.jumlah, pengeluaran.deskripsi
                     FROM akun 
@@ -18,18 +18,43 @@ class KeuanganModel extends DB
         return $this->execute($query);
     }
 
+    function getDataMasukPerBulan($bulan, $tahun)
+    {
+        // Buat query SQL dengan menambahkan kondisi WHERE untuk memilih data berdasarkan bulan dan tahun
+        $query = "SELECT pemasukan.id_pemasukan, akun.fullname, akun.jabatan , pemasukan.tanggal, pemasukan.jumlah, pemasukan.sumber, pemasukan.deskripsi
+                FROM akun 
+                JOIN pemasukan ON akun.id_akun = pemasukan.id_akun
+                WHERE MONTH(pemasukan.tanggal) = $bulan AND YEAR(pemasukan.tanggal) = $tahun";
+
+        // Eksekusi query dan kembalikan hasilnya
+        return $this->execute($query);
+    }
+
+    function getDataKeluarPerBulan($bulan, $tahun)
+    {
+        // Buat query SQL dengan menambahkan kondisi WHERE untuk memilih data berdasarkan bulan dan tahun
+        $query = "SELECT pengeluaran.id_pengeluaran, akun.fullname, akun.jabatan, pengeluaran.tanggal, pengeluaran.jumlah, pengeluaran.deskripsi
+                FROM akun 
+                JOIN pengeluaran ON akun.id_akun = pengeluaran.id_akun
+                WHERE MONTH(pengeluaran.tanggal) = $bulan AND YEAR(pengeluaran.tanggal) = $tahun";
+
+        // Eksekusi query dan kembalikan hasilnya
+        return $this->execute($query);
+    }
+
+
     function getForEditPemasukan($id)
     {
         $query = "SELECT sumber, jumlah, deskripsi FROM pemasukan WHERE id_pemasukan ='$id'";
 
-        return $this->execute($query); 
+        return $this->execute($query);
     }
 
     function getForEditPengeluaran($id)
     {
         $query = "SELECT jumlah, deskripsi FROM pengeluaran WHERE id_pengeluaran ='$id'";
 
-        return $this->execute($query); 
+        return $this->execute($query);
     }
 
     function MasukaddDataKeuangan($data)
@@ -68,7 +93,7 @@ class KeuanganModel extends DB
 
         return $this->execute($query);
     }
-    
+
     // Edit data pemasukan
     function MasukEditDataKeuangan($id_pemasukan, $data)
     {
@@ -91,78 +116,95 @@ class KeuanganModel extends DB
 
         $queryPengeluaran = "UPDATE pengeluaran SET jumlah = ?, tanggal = CURRENT_TIMESTAMP(), deskripsi = ? WHERE id_pengeluaran = ?";
         $stmt = $this->db_link->prepare($queryPengeluaran);
-        $stmt->bind_param("isi", $jumlah, $deskripsi , $id_pengeluaran);
+        $stmt->bind_param("isi", $jumlah, $deskripsi, $id_pengeluaran);
         $stmt->execute();
         return $stmt->affected_rows == 1;
     }
 
 
-    function getTotalPemasukan() {
+    function getTotalPemasukan()
+    {
         // Membuka koneksi ke database
         $this->open();
-    
+
         // Query untuk menghitung total pemasukan
         $query = "SELECT SUM(jumlah) AS total_pemasukan FROM pemasukan";
-        
+
         // Menjalankan query
         $result = $this->execute($query);
-        
+
         // Mengambil hasil query
         $row = mysqli_fetch_assoc($result);
-        
+
         // Menutup koneksi database
         $this->close();
-        
+
         // Mengembalikan total pemasukan
         return $row['total_pemasukan'];
     }
 
-    function getTotalPengeluaran() {
+    function getTotalPengeluaran()
+    {
         // Membuka koneksi ke database
         $this->open();
-    
+
         // Query untuk menghitung total pemasukan
         $query = "SELECT SUM(jumlah) AS total_pengeluaran FROM pengeluaran";
-        
+
         // Menjalankan query
         $result = $this->execute($query);
-        
+
         // Mengambil hasil query
         $row = mysqli_fetch_assoc($result);
-        
+
         // Menutup koneksi database
         $this->close();
-        
+
         // Mengembalikan total pemasukan
         return $row['total_pengeluaran'];
     }
 
-    function getIncomeDataPerMonth() 
+    function getIncomeDataPerMonth()
     {
-        $incomeDataPerMonth = array();
-        for ($month = 1; $month <= 12; $month++) {
-            $query = "SELECT SUM(jumlah) AS total_income 
-                      FROM pemasukan 
-                      WHERE MONTH(tanggal) = $month";
-            $result = $this->execute($query);
-            $row = mysqli_fetch_assoc($result);
-            $incomeDataPerMonth[$month - 1] = $row['total_income'];
+        // Query untuk mendapatkan total pendapatan per bulan
+        $query = "SELECT DATE_FORMAT(tanggal, '%Y-%m') AS bulan, SUM(jumlah) AS total 
+                FROM pemasukan 
+                GROUP BY DATE_FORMAT(tanggal, '%Y-%m') 
+                ORDER BY tanggal";
+
+        // Menjalankan query dan mengembalikan hasilnya
+        $result = $this->execute($query);
+
+        // Mengubah hasil query menjadi array asosiatif
+        $incomeData = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $incomeData[$row['bulan']] = $row['total'];
         }
-        return $incomeDataPerMonth;
+
+        return $incomeData;
     }
 
-    function getExpenseDataPerMonth() 
+
+    function getExpenseDataPerMonth()
     {
-        $expenseDataPerMonth = array();
-        for ($month = 1; $month <= 12; $month++) {
-            $query = "SELECT SUM(jumlah) AS total_expense 
-                      FROM pengeluaran 
-                      WHERE MONTH(tanggal) = $month";
-            $result = $this->execute($query);
-            $row = mysqli_fetch_assoc($result);
-            $expenseDataPerMonth[$month - 1] = $row['total_expense'];
+        // Query untuk mendapatkan total pendapatan per bulan
+        $query = "SELECT DATE_FORMAT(tanggal, '%Y-%m') AS bulan, SUM(jumlah) AS total 
+                FROM pengeluaran 
+                GROUP BY DATE_FORMAT(tanggal, '%Y-%m') 
+                ORDER BY tanggal";
+
+        // Menjalankan query dan mengembalikan hasilnya
+        $result = $this->execute($query);
+
+        // Mengubah hasil query menjadi array asosiatif
+        $expenseData = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $expenseData[$row['bulan']] = $row['total'];
         }
-        return $expenseDataPerMonth;
+
+        return $expenseData;
     }
-    
+
+
+
 }
